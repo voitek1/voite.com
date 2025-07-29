@@ -274,13 +274,13 @@
       document.getElementById('stopBtn').disabled = false;
       status.innerText = `🚀 بدء التصويت...\n\n`;
 
-      for (let i = 0; i < tasks.length; i += 3) {
+      for (let i = 0; i < tasks.length; i += 10) {
         if (stopRequested) {
           appendStatus("\n⏹️ تم الإيقاف.\n");
           break;
         }
 
-        const group = tasks.slice(i, i + 3);
+        const group = tasks.slice(i, i + 10);
         appendStatus(`🔄 مجموعة ${Math.floor(i / 3) + 1}:\n`);
 
         await Promise.all(group.map(async ({ token, optionId, label }, index) => {
@@ -311,7 +311,7 @@
           }
         }));
 
-        await new Promise(r => setTimeout(r, 500));
+        await new Promise(r => setTimeout(r, 200));
       }
 
       appendStatus("\n🎯 انتهى التصويت.");
